@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+    <!-- mybatis의 mapper를 스캔 -->
+    <mybatis-spring:scan base-package="com.zerock.mapper"/> 
+        <!-- Hikari config에는 DB 접속정보가 담김 (나중에 properties 파일로 이동 후 해당 값을 받아와서 사용해도 됨 -->
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <!-- log4jdbc를 사용하지 않을 때
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+        <property name="username" value="c##book_ex"/>
+        <property name="password" value="1234"/> -->
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"/>
+        <property name="username" value="c##book_ex"/>
+        <property name="password" value="1234"/> 
+    </bean>
+    
+    <!-- 위에서 설정한 Bean을 주입받아 생성자로서 사용하여 dataSource Bean을 생성 -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig"/>
+    </bean>
+    
+    <!-- SqlSessionFactoryBean 클래스를 이용하여, SqlSession 생성-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- Hikari CP로 생성한 dataSource를 넣어주어 각 DB연결마다의 SqlSession을 생성 가능  -->
+        <!-- 기본적으로  dataSource를 SqlSessionFactoryBean에 넣어줌으로써  SqlSession을 만든다고 생각하자.-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- root-context에서 서비스 스캔, controller는 servlet-context에서 스캔 
+    context:component-scan의 include, exclude로 좀 더 명확하게 작성할 수 있다.-->
+    <context:component-scan base-package="com.zerock.service"/>
+    <context:component-scan base-package="com.zerock.aop"/>
+    
+    <!-- XML설정 시, txManager는 꼭 dataSource와 같은 페이지에 선언되어야 @Transactional 어노테이션이 작동하여 Rollback이 된다. -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <tx:annotation-driven/>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    
+</beans>

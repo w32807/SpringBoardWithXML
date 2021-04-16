@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML에서 Mybatis Mapper를 사용하기 위한 설정 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zerock.mapper.BoardMapper">
+    <!-- Mapper XML과 연결 될 인터페이스를 namespace로 작성해줌 -->
+    <select id="getList" resultType="com.zerock.domain.BoardVO">
+        <![CDATA[
+            SELECT * FROM tbl_board WHERE bno > 0
+        ]]>
+    </select>
+    
+    <insert id="insert">
+        INSERT INTO tbl_board (bno, title, content, writer) VALUES (seq_board.nextval, #{title}, #{content}, #{writer})
+    </insert>
+    
+    <insert id="insertSelectKey">
+        <selectKey keyProperty="bno" order="BEFORE" resultType="Long">
+            SELECT seq_board.nextval FROM dual
+        </selectKey>
+        INSERT INTO tbl_board (bno, title, content, writer) VALUES (#{bno}, #{title}, #{content}, #{writer})
+    </insert>
+    
+    <select id="read" resultType="com.zerock.domain.BoardVO">
+        SELECT * FROM tbl_board where bno = #{bno}
+    </select>
+    
+    <delete id="delete" >
+        DELETE FROM tbl_board where bno = #{bno}
+    </delete>
+    
+    <update id="update">
+        UPDATE tbl_board SET title = #{title} , content = #{content}, writer = #{writer}, updatedate = sysdate where bno = #{bno}
+    </update>
+    
+    <select id="getListWithPaging" resultType="com.zerock.domain.BoardVO">
+        <![CDATA[
+        	SELECT bno, title, content, writer, regdate, updatedate, replyCnt
+        	FROM (
+	            SELECT 
+		            /*+ INDEX_DESC(tbl_board pk_board) */
+		            rownum rn, bno, title, content, writer, regdate, updatedate, replyCnt
+	            FROM tbl_board
+	            WHERE 
+		]]>	    
+		<include refid="criteria"/>
+		<![CDATA[        
+	            rownum <= #{pageNum} * #{amount}
+            )
+            WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>	
+    </select>
+    
+    <select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board WHERE bno > 0    
+    </select>
+    
+    <update id="updateReplyCnt">
+    	UPDATE tbl_board set replyCnt = replyCnt + #{amount} WHERE bno = #{bno} 
+    </update>
+    
+    <sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<!-- /* 아래의 쿼리문에 trim prefix로 OR를 모두 붙여주고, 위의  prefixOverrides="OR" 로 trim 태그 안 쿼리 중 맨 앞의 OR만 지워준다.*/ -->
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>			
+			</foreach>
+		</trim>
+    </sql>
+</mapper>
