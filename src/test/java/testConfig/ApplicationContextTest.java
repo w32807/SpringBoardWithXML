@@ -16,12 +16,12 @@ import com.zerock.service.SampleTxService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//ÁöÁ¤µÈ Å¬·¡½º³ª ¹®ÀÚ¿­À» ÀÌ¿ëÇÏ¿© ÇÊ¿äÇÑ °´Ã¼µéÀ» ½ºÇÁ¸µ ³»¿¡ °´Ã¼·Î µî·ÏÇÏ°Ô µÊ (BeanÀ¸·Î µî·ÏÇÏ°Ô µÊ)
-//¾Æ·¡¿Í °°ÀÌ classpath È¤Àº file À» »ç¿ëÇÒ ¼ö ÀÖÀ½
+//ì§€ì •ëœ í´ë˜ìŠ¤ë‚˜ ë¬¸ìì—´ì„ ì´ìš©í•˜ì—¬ í•„ìš”í•œ ê°ì²´ë“¤ì„ ìŠ¤í”„ë§ ë‚´ì— ê°ì²´ë¡œ ë“±ë¡í•˜ê²Œ ë¨ (Beanìœ¼ë¡œ ë“±ë¡í•˜ê²Œ ë¨)
+//ì•„ë˜ì™€ ê°™ì´ classpath í˜¹ì€ file ì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŒ
 //@ContextConfiguration(locations = "classpath:src/main/webapp/WEB-INF/spring/root-context.xml")
-//±Ùµ¥ ¹®Á¦. webappÀº classPath°¡ ¾Æ´Ï±â ¶§¹®¿¡, classpath¸¦ »ç¿ëÇÏ¿© À§Ä¡ ÁöÁ¤À» ÇØ ÁÙ ¼ö ¾ø´Ù.
-//±×·¯¹Ç·Î fileÀ» »ç¿ëÇÏ°í, ÇØ´ç configuerationÀ» »ó¼Ó¹Ş¾Æ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï ÇÏÀÚ
-//https://hightin.tistory.com/42 Âü°íÇÏ±â
+//ê·¼ë° ë¬¸ì œ. webappì€ classPathê°€ ì•„ë‹ˆê¸° ë•Œë¬¸ì—, classpathë¥¼ ì‚¬ìš©í•˜ì—¬ ìœ„ì¹˜ ì§€ì •ì„ í•´ ì¤„ ìˆ˜ ì—†ë‹¤.
+//ê·¸ëŸ¬ë¯€ë¡œ fileì„ ì‚¬ìš©í•˜ê³ , í•´ë‹¹ configuerationì„ ìƒì†ë°›ì•„ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ í•˜ì
+//https://hightin.tistory.com/42 ì°¸ê³ í•˜ê¸°
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"
         ,"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @WebAppConfiguration
