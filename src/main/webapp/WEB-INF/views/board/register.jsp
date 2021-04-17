@@ -151,7 +151,7 @@
 			});
 		})
 		
-		function showUploadedFile(uploadResultArr) {
+		function showUploadedResult(uploadResultArr) {
 			if(!uploadResultArr || uploadResultArr.length == 0) return false;
 
 			var uploadUL = $('.uploadResult ul');
@@ -159,22 +159,45 @@
 			$(uploadResultArr).each(function (i, obj) {
 				if(obj.image){
 					var fileCallPath = encodeURIComponent(obj.uploadPath + '/s_' + obj.uuid + '_' + obj.fileName);
-					str += "<li><div>";
+					str += "<li data-path='" + obj.uploadPath + "'";
+					str += " data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "' data-type='" + obj.image + "'>";
+					str += "<div>"
 					str += "<span>" + obj.fileName + "</span>"
-					str += "<button type='button' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<button type='button' class='btn btn-warning btn-circle'data-file=\'"+ fileCallPath + "\' data-type='image'><i class='fa fa-times'></i></button><br>";
 					str += "<img src='/display?fileName=" + fileCallPath + "'>";
 					str += "</div></li>"
 				}else{
 					var fileCallPath = encodeURIComponent(obj.uploadPath + '/' + obj.uuid + '_' + obj.fileName);
 					var fileLink = fileCallPath.replace(new RegExp(/\\/g), '/');
-					str += "<li><div>";
+					str += "<li data-path='" + obj.uploadPath + "'";
+					str += " data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "' data-type='" + obj.image + "'>";
+					str += "<div>"
 					str += "<span>" + obj.fileName + "</span>"
-					str += "<button type='button' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<button type='button' class='btn btn-warning btn-circle'data-file=\'"+ fileCallPath + "\' data-type='file'><i class='fa fa-times'></i></button><br>";
 					str += "<img src='/resources/img/attach.png></a>";
 					str += "</div></li>"					
 				}
 			});
-			uploadResult.append(str);
+			uploadUL.append(str);
 		}
+		
+		$('.uploadResult').on('click', 'button', function (e) {
+			var targetFile = $(this).data('file');
+			var type = $(this).data('type');
+			var targetLi = $(this).closest("li");
+			
+			$.ajax({
+				url : '/deleteFile',
+				data : {fileName : targetFile, type : type},
+				dataType : 'text',
+				type : 'POST',
+				success : function (result) {
+					alert(result);
+					targetLi.remove();
+				}
+			});
+			
+		});
+		
 	});// document ready의 끝
 </script>
