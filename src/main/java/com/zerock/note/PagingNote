@@ -1,25 +1,25 @@
-ÆäÀÌÂ¡ Ã³¸®¹æ¹ý
+íŽ˜ì´ì§• ì²˜ë¦¬ë°©ë²•
 
-1. ÆäÀÌÂ¡Àº DB¿¡¼­ ¿øÇÏ´Â °¹¼öÀÇ ¸®½ºÆ®¸¸ °¡Á®¿Â´Ù (ÆäÀÌÁö °´Ã¼¸¦ ÀÌ¿ëÇÏ¿© Ã³¸®ÇØµµ µÊ. ¿©±â¼­´Â Criteria °´Ã¼¸¦ »ý¼ºÇÔ)
+1. íŽ˜ì´ì§•ì€ DBì—ì„œ ì›í•˜ëŠ” ê°¯ìˆ˜ì˜ ë¦¬ìŠ¤íŠ¸ë§Œ ê°€ì ¸ì˜¨ë‹¤ (íŽ˜ì´ì§€ ê°ì²´ë¥¼ ì´ìš©í•˜ì—¬ ì²˜ë¦¬í•´ë„ ë¨. ì—¬ê¸°ì„œëŠ” Criteria ê°ì²´ë¥¼ ìƒì„±í•¨)
 
-2. È­¸é´Ü¿¡¼­ ÇÊ¿äÇÑ Á¤º¸
-	1) ÇöÀç ÆäÀÌÁö ¹øÈ£(page)
-	2) ÀÌÀü°ú ´ÙÀ½À¸·Î ÀÌµ¿°¡´ÉÇÑ ¸µÅ©ÀÇ Ç¥½Ã¿©ºÎ (prev, next)
-	3) È­¸é¿¡¼­ º¸¿©Áö´Â ÆäÀÌÁöÀÇ ½ÃÀÛ¹øÈ£¿Í ³¡ ¹øÈ£(startPage,endPage)
+2. í™”ë©´ë‹¨ì—ì„œ í•„ìš”í•œ ì •ë³´
+	1) í˜„ìž¬ íŽ˜ì´ì§€ ë²ˆí˜¸(page)
+	2) ì´ì „ê³¼ ë‹¤ìŒìœ¼ë¡œ ì´ë™ê°€ëŠ¥í•œ ë§í¬ì˜ í‘œì‹œì—¬ë¶€ (prev, next)
+	3) í™”ë©´ì—ì„œ ë³´ì—¬ì§€ëŠ” íŽ˜ì´ì§€ì˜ ì‹œìž‘ë²ˆí˜¸ì™€ ë ë²ˆí˜¸(startPage,endPage)
 	
-3. ÆäÀÌÁö °è»ê ½Ã ³¡¹øÈ£ºÎÅÍ °è»êÇÏ´Â °Ô ÆíÇÔ(ÇöÀç ÆäÀÌÁö ¹øÈ£¸¦ ¸Å°³º¯¼ö·Î, ÇÑ ÆäÀÌÁö¿¡ 10°³ÀÇ ÆäÀÌÁö ¹øÈ£¸¦ º¸¿©ÁØ´Ù°í °¡Á¤ 
-	// ÀÌÀü [1,2,3,4,5,6,7,8,9,10] ´ÙÀ½ >> ÀÌ°Í°ú °°Àº Çü½Ä
-	this.endPage = (int)(Math.ceil(ÆäÀÌÁö¹øÈ£ / 10.0)) * 10; // ²À 10ÀÌ ¾Æ´Ñ 10.0À¸·Î ³ª´©¾î ÁÖ¾î¾ß ½Ç¼ö Ãë±Þ µÇ¾î¼­ °ªÀÌ Á¦´ë·Î ³ª¿Â´Ù
+3. íŽ˜ì´ì§€ ê³„ì‚° ì‹œ ëë²ˆí˜¸ë¶€í„° ê³„ì‚°í•˜ëŠ” ê²Œ íŽ¸í•¨(í˜„ìž¬ íŽ˜ì´ì§€ ë²ˆí˜¸ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ, í•œ íŽ˜ì´ì§€ì— 10ê°œì˜ íŽ˜ì´ì§€ ë²ˆí˜¸ë¥¼ ë³´ì—¬ì¤€ë‹¤ê³  ê°€ì • 
+	// ì´ì „ [1,2,3,4,5,6,7,8,9,10] ë‹¤ìŒ >> ì´ê²ƒê³¼ ê°™ì€ í˜•ì‹
+	this.endPage = (int)(Math.ceil(íŽ˜ì´ì§€ë²ˆí˜¸ / 10.0)) * 10; // ê¼­ 10ì´ ì•„ë‹Œ 10.0ìœ¼ë¡œ ë‚˜ëˆ„ì–´ ì£¼ì–´ì•¼ ì‹¤ìˆ˜ ì·¨ê¸‰ ë˜ì–´ì„œ ê°’ì´ ì œëŒ€ë¡œ ë‚˜ì˜¨ë‹¤
 	
-	--> ±×·±µ¥ ÀÌ·¸°Ô µÇ¸é 10°³¾¿ 80°³ÀÇ µ¥ÀÌÅÍ¸¦ º¸¿©ÁÙ ¶§ ¸Ç ³¡ÀÇ ÆäÀÌÁö ¹øÈ£´Â 8ÀÌ µÇ¾î¾ß ÇÏ´Âµ¥ ±× ºÎºÐ ÇØ°áÀÌ ¾ÈµÇ¹Ç·Î, µ¥ÀÌÅÍÀÇ ÃÑ °¹¼ö·Î Àç°è»êÇÑ´Ù.
+	--> ê·¸ëŸ°ë° ì´ë ‡ê²Œ ë˜ë©´ 10ê°œì”© 80ê°œì˜ ë°ì´í„°ë¥¼ ë³´ì—¬ì¤„ ë•Œ ë§¨ ëì˜ íŽ˜ì´ì§€ ë²ˆí˜¸ëŠ” 8ì´ ë˜ì–´ì•¼ í•˜ëŠ”ë° ê·¸ ë¶€ë¶„ í•´ê²°ì´ ì•ˆë˜ë¯€ë¡œ, ë°ì´í„°ì˜ ì´ ê°¯ìˆ˜ë¡œ ìž¬ê³„ì‚°í•œë‹¤.
 	realEnd = (int)(Math.ceil((total * 1.0) / amount);
 	
 	this.endPage = (realEnd < this.endPage) ? realEnd : this.endPage;
 	 
-4. ÆäÀÌÁö ½ÃÀÛ¹øÈ£ °è»ê
+4. íŽ˜ì´ì§€ ì‹œìž‘ë²ˆí˜¸ ê³„ì‚°
 	this.startPage = this.endPage - 9; 
 
-5. ÀÌÀü (prev)
+5. ì´ì „ (prev)
 	this.prev = this.startPage > 1;
 	this.next = this.endPage > realEnd;
 	

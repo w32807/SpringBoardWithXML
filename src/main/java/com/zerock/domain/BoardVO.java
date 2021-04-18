@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-// MybatisÀÇ List<BoardVO> ÀÏ ¶§ »ı¼ºÀÚ¸¦ ±âÁØÀ¸·Î °¡Á®¿À¹Ç·Î, ¾Æ·¡ µÎ °¡Áö ¾î³ëÅ×ÀÌ¼Ç ¼±¾ğ 
+// Mybatisì˜ List<BoardVO> ì¼ ë•Œ ìƒì„±ìë¥¼ ê¸°ì¤€ìœ¼ë¡œ ê°€ì ¸ì˜¤ë¯€ë¡œ, ì•„ë˜ ë‘ ê°€ì§€ ì–´ë…¸í…Œì´ì…˜ ì„ ì–¸ 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -12,7 +12,7 @@ public interface BoardMapper {
     public List<BoardVO> getList();
     
     public List<BoardVO> getListWithPaging(Criteria cri);
-    // ÆäÀÌÂ¡ Ã³¸®¸¦ À§ÇÑ ÃÑ ¸®½ºÆ® °¹¼ö ¹İÈ¯
+    // í˜ì´ì§• ì²˜ë¦¬ë¥¼ ìœ„í•œ ì´ ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ ë°˜í™˜
     public int getTotalCount(Criteria cri);
     
     public void insert(BoardVO board);
@@ -25,6 +25,6 @@ public interface BoardMapper {
     
     public int update(BoardVO board);
     
-    // Mybatis¿¡ 2°³ ÀÌ»óÀÇ ¸Å°³º¯¼ö¸¦ Àü´ŞÇÒ ¶§ @ParamÀ» »ç¿ë 
+    // Mybatisì— 2ê°œ ì´ìƒì˜ ë§¤ê°œë³€ìˆ˜ë¥¼ ì „ë‹¬í•  ë•Œ @Paramì„ ì‚¬ìš© 
     public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
 }

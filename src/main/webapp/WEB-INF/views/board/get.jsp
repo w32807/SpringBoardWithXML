@@ -1,8 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
-
 <%@include file="../includes/header.jsp" %>
+<style>
+	.uploadResult{
+		width: 100%;
+		background-color: gray; 
+	}
+	.uploadResult ul{
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.uploadResult ul li{
+		list-style: none;
+		padding: 10px;
+		align-content: center;
+		text-align: center;
+	}
+	.uploadResult ul li img{
+		width: 100px;
+	}
+	.uploadResult ul li span{
+		color: white;
+	}
+	.bigPictureWrapper{
+		position: absolute;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		top:0%;
+		width: 100%;
+		height: 100%;
+		background-color: gray;
+		z-index: 100;
+		background: rgba(255,255,255,0,5);
+	}
+	.bigPicture{
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.bigPicture img{
+		width: 600px;
+	}
+</style>
+<!-- 첨부파일 리스트 -->
+<div class="bigPictureWrapper">
+	<div class="bigPicture"></div>
+</div>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Tables</h1>
@@ -36,7 +84,22 @@
                <button data-oper='list' class="btn btn-info">List</button>     
             </div>
         </div>
-    </div><!--  -->
+    </div>
+	<!-- 첨부파일 리스트 -->
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Files</div>
+            <div class="panel-body">
+	            <div class="form-group uploadDiv">
+	            	<input type="file" name="uploadFile" multiple="multiple">
+	            </div>
+                <div class="uploadResult">
+                	<ul>
+                	</ul>
+                </div>
+            </div>
+        </div>
+    </div>
 	<!-- 댓글 -->
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -275,5 +338,60 @@
 			openForm.find('#bno').remove(); // id로 찾아서 지우기
 			openForm.attr('action', '/board/list').submit();
 		});
-	})
+		
+		(function () {
+			var bno = '<c:out value ="${board.bno}"/>';
+			$.getJSON("/board/getAttachList", {bno : bno}, function(arr) {
+				console.log(arr)
+				var str = '';
+				$(arr).each(function(i, attach) {
+					console.log(attach)
+					if(attach.fileType){
+						var fileCallPath = encodeURIComponent(attach.uploadPath + '/s_' + attach.uuid + '_' + attach.fileName);
+						str += "<li data-path='" + attach.uploadPath + "'";
+						str += " data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.fileType + "'>";
+						str += "<div>";
+						str += "<span>" + attach.fileName + "</span>";
+						str += "<img src='/display?fileName=" + fileCallPath + "'>";
+						str += "</div></li>";
+					}else{
+						var fileCallPath = encodeURIComponent(attach.uploadPath + '/' + attach.uuid + '_' + attach.fileName);
+						var fileLink = fileCallPath.replace(new RegExp(/\\/g), '/');
+						str += "<li data-path='" + attach.uploadPath + "'";
+						str += " data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "' data-type='" + attach.fileType + "'>";
+						str += "<div>";
+						str += "<span>" + attach.fileName + "</span>";
+						str += "<img src='/resources/img/attach.png></a>";
+						str += "</div></li>";		
+					}
+				});
+				$('.uploadResult ul').append(str);
+			});
+		})(); // 이 형식으로 document ready에서 바로 함수 실행 가능 
+		
+		$('.uploadResult').on('click', 'li', function(e) {
+			var liObj = $(this);
+			var path = encodeURIComponent(liObj.data('path') + '/' + liObj.data('uuid') + '_' + liObj.data('filename'));
+			if(liObj.data('type')){
+				showImage(path.replace(new RegExp(/\\/g), '/'));
+			}else{
+				self.location = "/download?fileName=" + path;
+			}
+		});
+		
+		function showImage(fileCallPath) {
+			$('.bigPictureWrapper').css('display', 'flex').show();
+			$('.bigPicture')
+			.html("<img src='/display?fileName=" + fileCallPath + "'>'")
+			.animate({width:'100%', height:'100%'}, 1000);
+		}
+		
+		// 원본 이미지 창 닫기
+		$('.bigPictureWrapper').on('click', function(e) {
+			$('.bigPicture').animate({width:'0%', height:'0%'}, 1000);
+			setTimeout(function() {
+				$('.bigPictureWrapper').hide();
+			}, 1000);
+		});
+	})//document ready end
 </script>

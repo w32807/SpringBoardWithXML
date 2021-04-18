@@ -22,30 +22,30 @@ import com.zerock.service.ReplyService;
 
 @RestController
 @RequestMapping("/replies/*")
-// @RestController¸¦ »ç¿ëÇÏ±â À§ÇØ¼­´Â JSOM/XML°ú jackson-databind dependency°¡ ÇÊ¿äÇÏ´Ù.
-// Mapping ½Ã, consumes¸¦ ÅëÇØ Æ¯Á¤ Å¸ÀÔ¿¡¸¸ request°¡ ÀÀ´äÇÏµµ·Ï, produces¸¦ ÅëÇØ Æ¯Á¤ Å¸ÀÔ¿¡¸¸ response°¡ ÀÀ´äÇÏµµ·Ï ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù.
-// MappingÀÇ value °ª¿¡´Â URIÀÇ Çü½ÄÀÌ µé¾î°£´Ù.
-// °¢ ¸Ş¼ÒµåÀÇ ¹İÈ¯ÇüÀÎ ResponseEntity<T> Áß, T¿¡´Â Http ÀÀ´äÄÚµå¸¦ Á¦¿ÜÇÑ ¹İÈ¯ÇüÀÇ Å¸ÀÔ°ú ÀÏÄ¡ÇØ¾ß ÇÑ´Ù.
+// @RestControllerë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œëŠ” JSOM/XMLê³¼ jackson-databind dependencyê°€ í•„ìš”í•˜ë‹¤.
+// Mapping ì‹œ, consumesë¥¼ í†µí•´ íŠ¹ì • íƒ€ì…ì—ë§Œ requestê°€ ì‘ë‹µí•˜ë„ë¡, producesë¥¼ í†µí•´ íŠ¹ì • íƒ€ì…ì—ë§Œ responseê°€ ì‘ë‹µí•˜ë„ë¡ ì§€ì •í•  ìˆ˜ ìˆë‹¤.
+// Mappingì˜ value ê°’ì—ëŠ” URIì˜ í˜•ì‹ì´ ë“¤ì–´ê°„ë‹¤.
+// ê° ë©”ì†Œë“œì˜ ë°˜í™˜í˜•ì¸ ResponseEntity<T> ì¤‘, Tì—ëŠ” Http ì‘ë‹µì½”ë“œë¥¼ ì œì™¸í•œ ë°˜í™˜í˜•ì˜ íƒ€ì…ê³¼ ì¼ì¹˜í•´ì•¼ í•œë‹¤.
 public class ReplyController {
     
     @Autowired
     private ReplyService service;
     
-    // consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE} ¸¦ ÀÌ¿ëÇØ 
-    // request´Â JSON µ¥ÀÌÅÍ¿¡¸¸ ÀÀ´äÇÏµµ·Ï, response´Â MediaType.TEXT_PLAIN_VALUE¿¡¸¸ ÀÀ´äÇÏµµ·Ï ÁöÁ¤
+    // consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE} ë¥¼ ì´ìš©í•´ 
+    // requestëŠ” JSON ë°ì´í„°ì—ë§Œ ì‘ë‹µí•˜ë„ë¡, responseëŠ” MediaType.TEXT_PLAIN_VALUEì—ë§Œ ì‘ë‹µí•˜ë„ë¡ ì§€ì •
     @PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> create (@RequestBody ReplyVO vo){
-    	// @RequestBody¸¦ ÀÌ¿ëÇÏ¿©, URIÀÇ µ¥ÀÌÅÍ¸¦ ReplyVO¿¡ ¹ÙÀÎµù ½ÃÅ°µµ·Ï ÁöÁ¤ÇÔ
+    	// @RequestBodyë¥¼ ì´ìš©í•˜ì—¬, URIì˜ ë°ì´í„°ë¥¼ ReplyVOì— ë°”ì¸ë”© ì‹œí‚¤ë„ë¡ ì§€ì •í•¨
     	int insertCnt = service.register(vo);
-    	// µî·Ï¿¡ ¼º°ø ½Ã, http header¿¡ OK¸¦, ½ÇÆĞÇÏ¸é error¸¦ ´øÁø´Ù.
+    	// ë“±ë¡ì— ì„±ê³µ ì‹œ, http headerì— OKë¥¼, ì‹¤íŒ¨í•˜ë©´ errorë¥¼ ë˜ì§„ë‹¤.
     	return insertCnt == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
     
     @GetMapping(value = "/pages/{bno}/{page}"
     		,produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity<ReplyPageDTO> getList (@PathVariable("page") int page, @PathVariable("bno") Long bno){
-    	// @PathVariable´Â URI¿¡¼­ º¯¼ö¸¦ ¹ÙÀÎµùÇÏ´Â °ÍÀÌ±â ¶§¹®¿¡, 
-    	// valueÀÇ º¯¼ö°¡ µé¾î°¡´Â name°ú @PathVariableÀÇ nameÀÌ µ¿ÀÏÇÏÁö ¾ÊÀ¸¸é ¸Ş¼Òµå ÀÚÃ¼°¡ ½ÇÇàµÇÁö ¾Ê´Â´Ù.
+    	// @PathVariableëŠ” URIì—ì„œ ë³€ìˆ˜ë¥¼ ë°”ì¸ë”©í•˜ëŠ” ê²ƒì´ê¸° ë•Œë¬¸ì—, 
+    	// valueì˜ ë³€ìˆ˜ê°€ ë“¤ì–´ê°€ëŠ” nameê³¼ @PathVariableì˜ nameì´ ë™ì¼í•˜ì§€ ì•Šìœ¼ë©´ ë©”ì†Œë“œ ìì²´ê°€ ì‹¤í–‰ë˜ì§€ ì•ŠëŠ”ë‹¤.
     	Criteria cri = new Criteria(page, 10);
     	return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
     }

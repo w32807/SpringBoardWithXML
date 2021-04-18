@@ -1,1 +1,1 @@
-1. Logger�� java �ҽ��� test �ҽ��� ������ �ƴ� ���� �����ǹǷ�, �׽�Ʈ �� ���Ǵ� �α״� src/test/resources �Ʒ��� log4j.xml �� �����ؾ� �Ѵ�.
+1. Logger는 java 소스랑 test 소스랑 공통이 아닌 각각 설정되므로, 테스트 시 사용되는 로그는 src/test/resources 아래의 log4j.xml 을 수정해야 한다.

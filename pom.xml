@@ -211,6 +211,13 @@
 		    <artifactId>thumbnailator</artifactId>
 		    <version>0.4.8</version>
 		</dependency>
+		
+		<!-- 서버의 파일과 DB의 파일관리 TBL의 비교를 위한 Quartz 스케줄러 -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

@@ -29,9 +29,9 @@ public class BoardMapperTests extends ApplicationContextTest{
     @Test
     @Ignore
     public void testInsert() {
-        BoardVO board = BoardVO.builder().title("»õ·Î ÀÛ¼ºÇÏ´Â ±Û")
-                                                                .content("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë")      
-                                                                .writer("¿øÁØ").build();
+        BoardVO board = BoardVO.builder().title("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ê¸€")
+                                                                .content("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ë‚´ìš©")      
+                                                                .writer("ì›ì¤€").build();
         boardMapper.insert(board);
         
         log.info(board);
@@ -65,7 +65,7 @@ public class BoardMapperTests extends ApplicationContextTest{
     @Test
     public void testSearch() {
     	Criteria cri = new Criteria();
-    	cri.setKeyword("»õ·Î");
+    	cri.setKeyword("ìƒˆë¡œ");
     	cri.setType("TC");
     	
     	List<BoardVO> list = boardMapper.getListWithPaging(cri);

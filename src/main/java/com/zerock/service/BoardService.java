@@ -2,6 +2,7 @@ package com.zerock.service;
 
 import java.util.List;
 
+import com.zerock.domain.BoardAttachVO;
 import com.zerock.domain.BoardVO;
 import com.zerock.domain.Criteria;
 
@@ -19,5 +20,7 @@ public interface BoardService {
     public List<BoardVO> getList(Criteria cri);
     
     public int getTotal(Criteria cri);
+    
+    public List<BoardAttachVO> getAttachList(Long bno);
     
 }

@@ -26,9 +26,9 @@ public class BoardServiceTests extends ApplicationContextTest{
     @Test
     @Ignore
     public void testRegister() {
-        BoardVO board = BoardVO.builder().title("»õ·Î ÀÛ¼ºÇÏ´Â ±Û")
-                .content("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë")      
-                .writer("¿øÁØ").build();
+        BoardVO board = BoardVO.builder().title("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ê¸€")
+                .content("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ë‚´ìš©")      
+                .writer("ì›ì¤€").build();
         service.register(board);
     }
     

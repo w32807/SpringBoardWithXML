@@ -11,12 +11,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Criteria {
-	// Criteria´Â °Ë»öÀÇ ±âÁØÀÌ¶ó´Â ¶æ
-    private int pageNum; // ÆäÀÌÁö ¹øÈ£
-    private int amount;// 1ÆäÀÌÁö¿¡ ¸î°³ÀÇ µ¥ÀÌÅÍ¸¦ º¸¿©ÁÙ °ÇÁö
+	// CriteriaëŠ” ê²€ìƒ‰ì˜ ê¸°ì¤€ì´ë¼ëŠ” ëœ»
+    private int pageNum; // í˜ì´ì§€ ë²ˆí˜¸
+    private int amount;// 1í˜ì´ì§€ì— ëª‡ê°œì˜ ë°ì´í„°ë¥¼ ë³´ì—¬ì¤„ ê±´ì§€
     
-    private String type; // °Ë»öÅ¸ÀÔ
-    private String keyword; // Å°¿öµå
+    private String type; // ê²€ìƒ‰íƒ€ì…
+    private String keyword; // í‚¤ì›Œë“œ
     
     public Criteria() {
     	this(1, 10);
@@ -31,9 +31,9 @@ public class Criteria {
     	return type == null ? new String[] {} : type.split("");
     }
     
-    // ¸Å¹ø ÆäÀÌÂ¡, °Ë»ö¾î ÆÄ¶ó¹ÌÅÍ¸¦ ÆäÀÌÁö¸¶´Ù À¯ÁöÇÏ´Â ÀÏÀÌ ¹ø°Å·Î¿ö¼­ 
-    // UriComponentsBuilder¸¦ ÀÌ¿ëÇÏÀÚ.
-    // UriComponentsBuilder´Â ¿©·¯ °³ÀÇ ÆÄ¶ó¹ÌÅÍµéÀ» ¿¬°áÇØ¼­ URLÀÇ ÇüÅÂ·Î ¸¸µé¾îÁÖ´Â ±â´ÉÀ» ÇÑ´Ù.
+    // ë§¤ë²ˆ í˜ì´ì§•, ê²€ìƒ‰ì–´ íŒŒë¼ë¯¸í„°ë¥¼ í˜ì´ì§€ë§ˆë‹¤ ìœ ì§€í•˜ëŠ” ì¼ì´ ë²ˆê±°ë¡œì›Œì„œ 
+    // UriComponentsBuilderë¥¼ ì´ìš©í•˜ì.
+    // UriComponentsBuilderëŠ” ì—¬ëŸ¬ ê°œì˜ íŒŒë¼ë¯¸í„°ë“¤ì„ ì—°ê²°í•´ì„œ URLì˜ í˜•íƒœë¡œ ë§Œë“¤ì–´ì£¼ëŠ” ê¸°ëŠ¥ì„ í•œë‹¤.
     public String getListLink() {
     	UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
     			.queryParam("pageNum", this.getPageNum())

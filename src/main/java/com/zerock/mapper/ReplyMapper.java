@@ -16,8 +16,8 @@ public interface ReplyMapper {
 	public int delete(Long rno);
 	
 	public int update(ReplyVO vo);
-	// ´ñ±Û ÆäÀÌÂ¡ (@Param¿¡¼­ ¼³Á¤ÇÑ nameÀÌ MybatisÀÇ Äõ¸®¿¡¼­ #{name} ÇüÅÂ·Î »ç¿ëµÊ
+	// ëŒ“ê¸€ í˜ì´ì§• (@Paramì—ì„œ ì„¤ì •í•œ nameì´ Mybatisì˜ ì¿¼ë¦¬ì—ì„œ #{name} í˜•íƒœë¡œ ì‚¬ìš©ë¨
 	public List<ReplyVO> getListWithPaging(@Param ("cri") Criteria cri, @Param("bno") Long bno);
-	// ÆäÀÌÂ¡ Ã³¸®¸¦ À§ÇÑ ÃÑ ¸®½ºÆ® °¹¼ö ¹İÈ¯
+	// í˜ì´ì§• ì²˜ë¦¬ë¥¼ ìœ„í•œ ì´ ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ ë°˜í™˜
 	public int getCountByBno(Long bno);
 }

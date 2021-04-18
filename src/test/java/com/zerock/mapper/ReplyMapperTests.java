@@ -31,7 +31,7 @@ public class ReplyMapperTests extends ApplicationContextTest{
     		ReplyVO vo = new ReplyVO();
     		
     		vo.setBno(bnoArr[i%5]);
-    		vo.setReply("´ñ±Û Å×½ºÆ®" +i);
+    		vo.setReply("ëŒ“ê¸€ í…ŒìŠ¤íŠ¸" +i);
     		vo.setReplyer("replyer"+i);
     		
     		replyMapper.insert(vo);
@@ -54,7 +54,7 @@ public class ReplyMapperTests extends ApplicationContextTest{
     @Ignore
     public void testUpdate() {
     	ReplyVO vo = replyMapper.read(4L);
-    	vo.setReply("UPDATE Å×½ºÆ®");
+    	vo.setReply("UPDATE í…ŒìŠ¤íŠ¸");
     	replyMapper.update(vo);
     	log.info(replyMapper.read(4L));
     }

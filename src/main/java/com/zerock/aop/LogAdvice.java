@@ -10,17 +10,17 @@ import lombok.extern.log4j.Log4j;
 
 @Aspect
 @Log4j
-@Component // AOP Å¬·¡½ºµµ BeanÀ¸·Î ÀÎ½ÄÇÏµµ·Ï ¼³Á¤
+@Component // AOP í´ë˜ìŠ¤ë„ Beanìœ¼ë¡œ ì¸ì‹í•˜ë„ë¡ ì„¤ì •
 public class LogAdvice {
 	
-	// AspectJÀÇ Ç¥Çö½ÄÀ» »ç¿ë (ÃßÈÄ ÇĞ½À ´õ ÇÊ¿ä)
-	// 1. ¾î¶² À§Ä¡¿¡ Advice¸¦ Àû¿ëÇÒ °ÍÀÎÁö °áÁ¤. 
+	// AspectJì˜ í‘œí˜„ì‹ì„ ì‚¬ìš© (ì¶”í›„ í•™ìŠµ ë” í•„ìš”)
+	// 1. ì–´ë–¤ ìœ„ì¹˜ì— Adviceë¥¼ ì ìš©í•  ê²ƒì¸ì§€ ê²°ì •. 
 	@Before("execution(* com.zerock.service.SampleService*.*(..))")
 	public void logBefore() {
 		log.info("==============");
 	}
 	
-	// Æ¯Á¤ ¸Ş¼Òµå¸¦ ÁöÁ¤ÇÏ¿© Advice¸¦ Àû¿ë½ÃÅ´
+	// íŠ¹ì • ë©”ì†Œë“œë¥¼ ì§€ì •í•˜ì—¬ Adviceë¥¼ ì ìš©ì‹œí‚´
 	@Before("execution(* com.zerock.service.SampleService*.doAdd(String, String))"
 			+ "&& args(str1, str2)")
 	public void logBeforeWithParam(String str1, String str2) {

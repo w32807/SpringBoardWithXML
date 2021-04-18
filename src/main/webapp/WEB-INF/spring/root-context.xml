@@ -5,7 +5,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
@@ -42,6 +44,7 @@
     context:component-scan의 include, exclude로 좀 더 명확하게 작성할 수 있다.-->
     <context:component-scan base-package="com.zerock.service"/>
     <context:component-scan base-package="com.zerock.aop"/>
+    <context:component-scan base-package="com.zerock.task"/>
     
     <!-- XML설정 시, txManager는 꼭 dataSource와 같은 페이지에 선언되어야 @Transactional 어노테이션이 작동하여 Rollback이 된다. -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -49,6 +52,8 @@
     </bean>
     
     <tx:annotation-driven/>
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <aop:aspectj-autoproxy/>
+    <!-- Quartz 스케줄러 -->
+    <task:annotation-driven/>
     
 </beans>

@@ -17,7 +17,7 @@ import testConfig.ApplicationContextTest;
 
 @Log4j
 public class DataSourceTests extends ApplicationContextTest{
-    // DataSouce¸¦ ¾ò¾î¿Í¼­, DB Ä¿³Ø¼ÇÀ» Å×½ºÆ®ÇÑ´Ù.
+    // DataSouceë¥¼ ì–»ì–´ì™€ì„œ, DB ì»¤ë„¥ì…˜ì„ í…ŒìŠ¤íŠ¸í•œë‹¤.
     @Autowired
     private DataSource dataSource;
     

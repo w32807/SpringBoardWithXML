@@ -7,9 +7,9 @@ import lombok.Data;
 import lombok.Getter;
 
 @Data
-@AllArgsConstructor // replyCnt¿Í list¸¦ »ı¼ºÀÚ·Î Ã³¸®ÇÏ±â À§ÇÔ
+@AllArgsConstructor // replyCntì™€ listë¥¼ ìƒì„±ìë¡œ ì²˜ë¦¬í•˜ê¸° ìœ„í•¨
 @Getter
-//ÆäÀÌÁö °ü·Ã Á¤º¸¸¦ °¡Áö°í ÀÖ´Â Criteria¿¡¼­ °ªÀ» ¹Ş¾Æ ½ÇÁ¦·Î Paging Ã³¸®¸¦ ÇÏ´Â °è»êÀÌ ÀÌ·ç¾î Áö´Â DTO
+//í˜ì´ì§€ ê´€ë ¨ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” Criteriaì—ì„œ ê°’ì„ ë°›ì•„ ì‹¤ì œë¡œ Paging ì²˜ë¦¬ë¥¼ í•˜ëŠ” ê³„ì‚°ì´ ì´ë£¨ì–´ ì§€ëŠ” DTO
 public class ReplyPageDTO {
 	private int replyCnt;
 	

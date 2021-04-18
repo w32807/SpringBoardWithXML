@@ -2,11 +2,7 @@ package com.zerock.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.zerock.domain.BoardAttachVO;
-import com.zerock.domain.BoardVO;
-import com.zerock.domain.Criteria;
 
 public interface BoardAttachMapper {
 
@@ -16,4 +12,7 @@ public interface BoardAttachMapper {
     
     public List<BoardAttachVO> findByBno(Long bno);
     
+    public void deleteAll(Long bno);
+    
+    public List<BoardAttachVO> getOldFiles();
 }

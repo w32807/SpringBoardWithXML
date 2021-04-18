@@ -1,26 +1,26 @@
-REST API¶õ Æ¯Á¤ ±â¼úÀÌ ¾Æ´Ñ, °³¹ßÀÚ »çÀÌ¿¡¼­ Åë¿ëµÇ´Â Çü½ÄÀ» ÀÇ¹ÌÇÑ´Ù.
-¾î¶² Çü½ÄÀÎÁö URI¸¸ º¸°í À¯ÃßÇÒ ¼ö ÀÖ´Â Çü½ÄÀ» ¶æÇÑ´Ù. (URI´Â ¸í»ç·Î ±¸¼ºµÇ´Â°Ô ÀÏ¹ÝÀû)
+REST APIëž€ íŠ¹ì • ê¸°ìˆ ì´ ì•„ë‹Œ, ê°œë°œìž ì‚¬ì´ì—ì„œ í†µìš©ë˜ëŠ” í˜•ì‹ì„ ì˜ë¯¸í•œë‹¤.
+ì–´ë–¤ í˜•ì‹ì¸ì§€ URIë§Œ ë³´ê³  ìœ ì¶”í•  ìˆ˜ ìžˆëŠ” í˜•ì‹ì„ ëœ»í•œë‹¤. (URIëŠ” ëª…ì‚¬ë¡œ êµ¬ì„±ë˜ëŠ”ê²Œ ì¼ë°˜ì )
 
-1. ¿Ö ¾µ±î?
-	1) °³¹ßÀÚ°¡ URL·Î ¾î¶² ÀÛ¾÷À» ÇÏ´ÂÁö ²À µû¶ó¾ß ÇÏ´Â ±âÁØÀº ¾ø´Ù.
-		a) °Ô½ÃÆÇ ¸®½ºÆ®¸¦ º¸°í ½ÍÀ» ¶§, /board/list·Î ÇÒ ¼ö ÀÖÁö¸¸ /board/wonjun À¸·Î ±¸ÇöÇØµµ »ó°ü ¾ø´Ù. ±×·±µ¥ ´Ù¸¥ °³¹ßÀÚ°¡ ÃßÈÄ¿¡ À¯Áöº¸¼ö¸¦ ÇÒ ¶§ ÀÀ? ÇÏ°Ô µÈ´Ù.
-	2) ±×·¡¼­ REST API¸¦ »ç¿ëÇÏ¸é °³¹ßÀÚ°¡ URL¸¸ º¸°í ¾î¶² ÀÛ¾÷¿¡ ´ëÇÑ URIÀÎÁö À¯ÃßÇÒ ¼ö ÀÖ´Â Ç¥ÁØÀ» µû¸£°Ô µÇ´Â °ÍÀÌ´Ù.
-	3) HTTP¿¡¼­ GET, DELETE ¹æ½ÄÀº URL¿¡ ±×´ë·Î Á¤º¸¸¦ Àü´ÞÇÏ°í, POST, PUT, PATCH¸¦ BODY¿¡ Á¤º¸¸¦ °¨Ãß¾î º¸³¾ ¼ö ÀÖ´Ù.
-	4) »ç½Ç ¾î¶² ¹æ½ÄÀ» ½á¼­ CRUD¸¦ ÇØµµ »ó°ü¾øÁö¸¸, ¿ëµµ¸¦ ±¸ºÐÇØ¼­ »ç¿ëÇÏ´Â °ÍÀÌ ¹Ù¶÷Á÷ÇÏ´Ù.
-		a) GET - µ¥ÀÌÅÍ¸¦ Á¶È¸ÇÒ ¶§ »ç¿ë
-		b) DELETE - µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÒ ¶§ »ç¿ë
-		c) POST - µ¥ÀÌÅÍ¸¦ Ãß°¡ÇÒ ¶§
-		d) PUT - ÇØ´ç ÀÎ½ºÅÏ½ºÀÇ ¸ðµç Á¤º¸¸¦ UPDATE ÇÒ ¶§ »ç¿ë
-		e) PATCH - ÇØ´ç ÀÎ½ºÅÏ½ºÀÇ ÀÏºÎ Á¤º¸¸¦ UPDATE ÇÒ ¶§ »ç¿ë
+1. ì™œ ì“¸ê¹Œ?
+	1) ê°œë°œìžê°€ URLë¡œ ì–´ë–¤ ìž‘ì—…ì„ í•˜ëŠ”ì§€ ê¼­ ë”°ë¼ì•¼ í•˜ëŠ” ê¸°ì¤€ì€ ì—†ë‹¤.
+		a) ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ê³  ì‹¶ì„ ë•Œ, /board/listë¡œ í•  ìˆ˜ ìžˆì§€ë§Œ /board/wonjun ìœ¼ë¡œ êµ¬í˜„í•´ë„ ìƒê´€ ì—†ë‹¤. ê·¸ëŸ°ë° ë‹¤ë¥¸ ê°œë°œìžê°€ ì¶”í›„ì— ìœ ì§€ë³´ìˆ˜ë¥¼ í•  ë•Œ ì‘? í•˜ê²Œ ëœë‹¤.
+	2) ê·¸ëž˜ì„œ REST APIë¥¼ ì‚¬ìš©í•˜ë©´ ê°œë°œìžê°€ URLë§Œ ë³´ê³  ì–´ë–¤ ìž‘ì—…ì— ëŒ€í•œ URIì¸ì§€ ìœ ì¶”í•  ìˆ˜ ìžˆëŠ” í‘œì¤€ì„ ë”°ë¥´ê²Œ ë˜ëŠ” ê²ƒì´ë‹¤.
+	3) HTTPì—ì„œ GET, DELETE ë°©ì‹ì€ URLì— ê·¸ëŒ€ë¡œ ì •ë³´ë¥¼ ì „ë‹¬í•˜ê³ , POST, PUT, PATCHë¥¼ BODYì— ì •ë³´ë¥¼ ê°ì¶”ì–´ ë³´ë‚¼ ìˆ˜ ìžˆë‹¤.
+	4) ì‚¬ì‹¤ ì–´ë–¤ ë°©ì‹ì„ ì¨ì„œ CRUDë¥¼ í•´ë„ ìƒê´€ì—†ì§€ë§Œ, ìš©ë„ë¥¼ êµ¬ë¶„í•´ì„œ ì‚¬ìš©í•˜ëŠ” ê²ƒì´ ë°”ëžŒì§í•˜ë‹¤.
+		a) GET - ë°ì´í„°ë¥¼ ì¡°íšŒí•  ë•Œ ì‚¬ìš©
+		b) DELETE - ë°ì´í„°ë¥¼ ì‚­ì œí•  ë•Œ ì‚¬ìš©
+		c) POST - ë°ì´í„°ë¥¼ ì¶”ê°€í•  ë•Œ
+		d) PUT - í•´ë‹¹ ì¸ìŠ¤í„´ìŠ¤ì˜ ëª¨ë“  ì •ë³´ë¥¼ UPDATE í•  ë•Œ ì‚¬ìš©
+		e) PATCH - í•´ë‹¹ ì¸ìŠ¤í„´ìŠ¤ì˜ ì¼ë¶€ ì •ë³´ë¥¼ UPDATE í•  ë•Œ ì‚¬ìš©
 
-2. ¾î³ëÅ×ÀÌ¼Ç
-	1) @RestController - Controller°¡ REST ¹æ½ÄÀ» Ã³¸®ÇÏ±â À§ÇÑ °ÍÀÓÀ» ¸í½ÃÇÔ
-		a) @RestController = @Controller(Å¬·¡½º ´ÜÀ§) + @ResponseBody(¸Þ¼Òµå ´ÜÀ§)·Î ³ª´©¾î¼­ ¼±¾ðµµ °¡´ÉÇÏ´Ù
-	2) @ResponseBody - Controller ¸Þ¼Òµå Ã³¸® ÈÄ, JSP °°Àº View·Î Àü´Þ µÇ´Â °ÍÀÌ ¾Æ´Ñ µ¥ÀÌÅÍ ÀÚÃ¼¸¦ Àü´ÞÇÏ±â À§ÇÑ ¿ëµµ
-		(ºñ¿ÀÆÊ PDA°°Àº °æ¿ì ajaxÀÇ ¹ÝÈ¯À» jsonview·Î Ã³¸®ÇÏ¿´°í, ¿©±â¼­´Â Rest·Î Ã³¸®ÇÔ)
-	3) @PathVariable - URL °æ·Î¿¡ ÀÖ´Â °ªÀ» ÆÄ¶ó¹ÌÅÍ·Î ÃßÃâÇÏ·Á°í ÇÒ ¶§ »ç¿ë
-	4) @CrossOrigin - AjaxÀÇ Å©·Î½º µµ¸ÞÀÎ ¹®Á¦¸¦ ÇØ°áÇØÁÖ´Â ¾î³ëÅ×ÀÌ¼Ç
-	5) @RequestBody - JSON µ¥ÀÌÅÍ¸¦ ¿øÇÏ´Â Å¸ÀÔÀ¸·Î ¹ÙÀÎµù Ã³¸®
+2. ì–´ë…¸í…Œì´ì…˜
+	1) @RestController - Controllerê°€ REST ë°©ì‹ì„ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ê²ƒìž„ì„ ëª…ì‹œí•¨
+		a) @RestController = @Controller(í´ëž˜ìŠ¤ ë‹¨ìœ„) + @ResponseBody(ë©”ì†Œë“œ ë‹¨ìœ„)ë¡œ ë‚˜ëˆ„ì–´ì„œ ì„ ì–¸ë„ ê°€ëŠ¥í•˜ë‹¤
+	2) @ResponseBody - Controller ë©”ì†Œë“œ ì²˜ë¦¬ í›„, JSP ê°™ì€ Viewë¡œ ì „ë‹¬ ë˜ëŠ” ê²ƒì´ ì•„ë‹Œ ë°ì´í„° ìžì²´ë¥¼ ì „ë‹¬í•˜ê¸° ìœ„í•œ ìš©ë„
+		(ë¹„ì˜¤íŒœ PDAê°™ì€ ê²½ìš° ajaxì˜ ë°˜í™˜ì„ jsonviewë¡œ ì²˜ë¦¬í•˜ì˜€ê³ , ì—¬ê¸°ì„œëŠ” Restë¡œ ì²˜ë¦¬í•¨)
+	3) @PathVariable - URL ê²½ë¡œì— ìžˆëŠ” ê°’ì„ íŒŒë¼ë¯¸í„°ë¡œ ì¶”ì¶œí•˜ë ¤ê³  í•  ë•Œ ì‚¬ìš©
+	4) @CrossOrigin - Ajaxì˜ í¬ë¡œìŠ¤ ë„ë©”ì¸ ë¬¸ì œë¥¼ í•´ê²°í•´ì£¼ëŠ” ì–´ë…¸í…Œì´ì…˜
+	5) @RequestBody - JSON ë°ì´í„°ë¥¼ ì›í•˜ëŠ” íƒ€ìž…ìœ¼ë¡œ ë°”ì¸ë”© ì²˜ë¦¬
 	
-3, Á» ´õ REST API¿¡ ´ëÇÑ ÇÐ¼úÀû ³»¿ë
-	- '±×·± REST API·Î ±¦ÂúÀ»°¡' ¸¦ À¯Æ©ºê¿¡¼­ °Ë»ö   
+3, ì¢€ ë” REST APIì— ëŒ€í•œ í•™ìˆ ì  ë‚´ìš©
+	- 'ê·¸ëŸ° REST APIë¡œ ê´œì°®ì„ê°€' ë¥¼ ìœ íŠœë¸Œì—ì„œ ê²€ìƒ‰   

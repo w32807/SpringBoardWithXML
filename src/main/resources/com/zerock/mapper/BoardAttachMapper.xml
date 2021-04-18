@@ -13,7 +13,15 @@
     	DELETE FROM tbl_attach WHERE uuid = #{uuid}
     </delete>
     
-    <select id="findByBno">
+    <delete id="deleteAll">
+    	DELETE FROM tbl_attach WHERE bno = #{bno}
+    </delete>
+    
+    <select id="findByBno" resultType="com.zerock.domain.BoardAttachVO">
     	SELECT * FROM tbl_attach WHERE bno = #{bno}
+    </select>
+    
+    <select id="getOldFiles" resultType="com.zerock.domain.BoardAttachVO">
+    	SELECT * FROM tbl_attach WHERE uploadPath = to_char(sysdate-1, 'yyyy/mm/dd')
     </select>
 </mapper>
